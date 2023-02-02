@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"time"
 
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/denisenkom/go-mssqldb"
 	"github.com/labstack/echo"
 	"github.com/spf13/viper"
 
@@ -37,11 +37,13 @@ func main() {
 	dbPass := viper.GetString(`database.pass`)
 	dbName := viper.GetString(`database.name`)
 	connection := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPass, dbHost, dbPort, dbName)
+
 	val := url.Values{}
 	val.Add("parseTime", "1")
 	val.Add("loc", "Asia/Jakarta")
 	dsn := fmt.Sprintf("%s?%s", connection, val.Encode())
-	dbConn, err := sql.Open(`mysql`, dsn)
+	fmt.Println(dsn)
+	dbConn, err := sql.Open(`mssql`, dsn) //"sqlserver://sa:123.abc@192.168.0.6/instance?database=GO")
 
 	if err != nil {
 		log.Fatal(err)

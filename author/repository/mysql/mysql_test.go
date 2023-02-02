@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/assert"
 	sqlmock "gopkg.in/DATA-DOG/go-sqlmock.v1"
 
 	repository "github.com/bxcodec/go-clean-arch/author/repository/mysql"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGetByID(t *testing.T) {
